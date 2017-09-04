@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cases/case",
+    "pages/userInfo/user",
+    "pages/product/index",
+    "pages/combine/combine",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTitleText": "A sir灯光升级",
+    "navigationBarBackgroundColor":"#000000",
+    "navigationBarTextStyle":"",
+    "backgroundTextStyle":"light",
+    "backgroundColor":"#999999"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "pages/index/image/tabmenu/home.png",
+        "selectedIconPath": "pages/index/image/tabmenu/home.png",
+        "text": "A sir主页"
+      },
+      {
+        "pagePath": "pages/cases/case",
+        "iconPath": "pages/index/image/tabmenu/hot.png",
+        "selectedIconPath": "pages/index/image/tabmenu/hot.png",
+        "text": "特色案例"
+      },
+      {
+        "pagePath": "pages/combine/combine",
+        "iconPath":"pages/index/image/tabmenu/combine.png",
+        "selectedIconPath": "pages/index/image/tabmenu/combine.png",
+        "text": "超值套餐"
+      },
+      {
+        "pagePath": "pages/userInfo/user",
+        "iconPath": "pages/index/image/tabmenu/account.png",
+        "selectedIconPath": "pages/index/image/tabmenu/account.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

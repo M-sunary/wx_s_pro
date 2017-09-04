@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<import src="../../common/nav.wxml"/>
+<import src="../../common/list.wxml"/>
+
+<view>
+    <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{bannerList}}">
+        <swiper-item>
+        <image src="{{item.thumbUrl}}" class="slide-image" width="455" height="150"/>
+        </swiper-item>
+    </block>
+    </swiper>
+</view>
+<template is="nav" data="{{ navList, activeIndex }}"/>
+<template is="list" data="{{ goods, prompt }}"/>
+
