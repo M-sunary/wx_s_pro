@@ -1,4 +1,5 @@
 //app.js
+import HttpResource from './helpers/HttpResource'
 App({
   onLaunch: function() {
     //调用API从本地缓存中获取数据
@@ -22,6 +23,7 @@ App({
       })
     }
   },
+  HttpResource: (url, paramDefaults, actions, options) => new HttpResource(url, paramDefaults, actions, options).init(), 
 
   globalData: {
     userInfo: null
