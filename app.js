@@ -1,5 +1,7 @@
 //app.js
-import HttpResource from './helpers/HttpResource'
+import WxValidate from './assets/plugins/wx-validate/WxValidate'
+import WxService from './assets/plugins/wx-service/WxService'
+//import HttpResource from './helpers/HttpResource'
 App({
   onLaunch: function() {
     //调用API从本地缓存中获取数据
@@ -23,8 +25,8 @@ App({
       })
     }
   },
-  HttpResource: (url, paramDefaults, actions, options) => new HttpResource(url, paramDefaults, actions, options).init(), 
-
+  //HttpResource: (url, paramDefaults, actions, options) => new HttpResource(url, paramDefaults, actions, options).init(), 
+  WxService: new WxService, 
   globalData: {
     userInfo: null
   }

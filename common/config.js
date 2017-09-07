@@ -19,9 +19,9 @@ var config = {
     requestUrl: `http://${host}/users/user_list`,
 
     // 测试图片请求地址
-    reqBannerListUrl: `http://localhost:8900/banner/list`,
-    reqNavListUrl: `http://localhost:8900/nav/list`,
-    reqCombineListUrl: `http://localhost:8900/combine/list`,
+    reqBannerListUrl: `http://localhost:8900/banner/lists`,
+    reqNavListUrl: `http://localhost:8900/nav/lists`,
+    reqCombineListUrl: `http://localhost:8900/combine/lists`,
 
     // 用code换取openId
     openIdUrl: `https://${host}/openid`,

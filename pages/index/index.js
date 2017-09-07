@@ -5,7 +5,7 @@ const reqCombineListUrl = require('../../common/config').reqCombineListUrl
 const duration = 2000
 
 //获取应用实例
-var app = getApp()
+const App = getApp()
 Page({
     data: {
         activeIndex: 0,
@@ -67,6 +67,18 @@ Page({
             },
             fail: function ({ errMsg }) {
                 console.log('request fail, set default data')
+                self.setData({
+                    bannerList:[
+                        {
+                            'id':1,
+                            'thumbUrl':'image/banner/banner2.png'
+                        },
+                        {
+                            'id': 2,
+                            'thumbUrl': 'image/banner/banner3.png'
+                        }
+                    ]
+                })
             }
         })
     },
@@ -96,6 +108,30 @@ Page({
             },
             fail: function ({ errMsg }) {
                 console.log('request fail, set default data')
+                self.setData({
+                    navList:[
+                        {
+                            'navId':1,
+                            'navName':'默认显示全部套餐',
+                            'navShortName':'全部'
+                        },
+                        {
+                            'navId': 2,
+                            'navName': '欧司朗海拉五套装',
+                            'navShortName': '欧司朗套装'
+                        },
+                        {
+                            'navId': 3,
+                            'navName': '七度英雄海拉5定制套餐',
+                            'navShortName': '七度英雄'
+                        },
+                        {
+                            'navId': 4,
+                            'navName': '恒威LED大灯透镜系列',
+                            'navShortName': '恒威LED'
+                        }
+                    ]
+                })
             }
         })
     },
@@ -147,20 +183,23 @@ Page({
                             'price': 1400,
                             'memo': ''
                         }],
-                        paginate: {}
+                        paginate: {
+                            total:1
+                        }
                     }
                 })
             }
         })
     },
     navigateTo(e) {
-        console.log(e)
-        App.WxService.navigateTo('/pages/goods/detail/index', {
+        console.info("进来了")
+        App.WxService.navigateTo('../combine/detail/combineDetail', {
             id: e.currentTarget.dataset.id
         })
+
     },
     search() {
-        App.WxService.navigateTo('/pages/search/index')
+        App.WxService.navigateTo('/pages/index/index')
     },
 
     getClassify() {
@@ -187,28 +226,55 @@ Page({
     },
 
     onPullDownRefresh() {
-        console.info('onPullDownRefresh')
+        console.log('onPullDownRefresh')
         this.initData()
     },
     onReachBottom() {
-        console.info('onReachBottom')
+        console.log('onReachBottom')
         if (!this.data.goods.paginate.hasNext) return
     },
     onTapTag(e) {
         const type = e.currentTarget.dataset.type
         const index = e.currentTarget.dataset.index
-        const goods = {
-            items: [],
-            params: {
-                page: 1,
-                limit: 10,
-                type: type,
-            },
-            paginate: {}
-        }
+        const url = reqCombineListUrl+"/"+type
+        console.log("请求url:",url)
+        this.getGoodsByType(url),
         this.setData({
             activeIndex: index,
-            goods: goods,
+        })
+    },
+    getGoodsByType(url){
+        var self = this
+        wx.request({
+            url: url,
+            data: {},//请求参数，若请求接口无需参数则为空
+            method: "POST",
+            success: function (result) {
+                console.log(result.data.length)
+                if (result.data.length > 0) {
+                    self.setData({
+                        goods: {
+                            items: result.data,
+                            paginate: {
+                                total: result.data.length
+                            }
+                        }
+                    })
+                }else{
+                    self.setData({
+                        prompt: {
+                            hidden: 0,
+                        },
+                    })
+                }
+            },
+            fail: function(){
+                self.setData({
+                    prompt: {
+                        hidden: 0,
+                    },
+                })
+            }
         })
     }
 })

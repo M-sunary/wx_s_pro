@@ -1,5 +1,5 @@
 //获取配置文件信息
-const reqImgListUrl = require('../../common/config').reqImgListUrl
+const reqImgListUrl = require('../../common/config').reqCombineListUrl
 const duration = 2000
 
 Page({
@@ -81,12 +81,12 @@ Page({
                 goods: {
                     items: [
                         {
-                            'combineContent': '透镜/安定器/总成',
-                            'combineId': 1,
-                            'combineImg': 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG',
-                            'combineName': '欧司朗海拉5套装',
-                            'combineParams': '36W',
-                            'combinePrice': 1400,
+                            'content': '透镜/安定器/总成',
+                            'id': 1,
+                            'thumbUrl': 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG',
+                            'name': '欧司朗海拉5套装',
+                            'params': '36W',
+                            'price': 1400,
                             'memo': ''
                         }
                     ],

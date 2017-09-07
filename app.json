@@ -5,6 +5,7 @@
     "pages/userInfo/user",
     "pages/product/index",
     "pages/combine/combine",
+    "pages/combine/detail/combineDetail",
     "pages/logs/logs"
   ],
   "window": {
