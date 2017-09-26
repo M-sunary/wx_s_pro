@@ -51,6 +51,10 @@ Page({
         wx.request({
             url: reqBannerListUrl,
             data: {},//请求参数，若请求接口无需参数则为空
+            method: 'GET',
+            header: {
+              'content-type': 'application/json'
+            },
             success: function (result) {
                 wx.showToast({
                     title: 'loading',
@@ -92,6 +96,10 @@ Page({
         wx.request({
             url: reqNavListUrl,
             data: {},//请求参数，若请求接口无需参数则为空
+            method: 'GET',
+            header: {
+              'content-type': 'application/json'
+            },
             success: function (result) {
                 wx.showToast({
                     title: 'loading',
@@ -150,6 +158,10 @@ Page({
         wx.request({
             url: reqCombineListUrl,
             data: {},//请求参数，若请求接口无需参数则为空
+            method: 'GET',
+            header: {
+              'content-type': 'application/json'
+            },
             success: function (result) {
                 wx.showToast({
                     title: 'loading',
@@ -248,7 +260,10 @@ Page({
         wx.request({
             url: url,
             data: {},//请求参数，若请求接口无需参数则为空
-            method: "POST",
+            method: 'POST',
+            header: {
+              'content-type':'application/json'
+              },
             success: function (result) {
                 console.log(result.data.length)
                 if (result.data.length > 0) {

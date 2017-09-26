@@ -1,3 +1,5 @@
+const reqCombineDetailUrl = require('../../../common/config').reqCombineDetailUrl
+
 const App = getApp()
 
 Page({
@@ -8,6 +10,7 @@ Page({
         interval: 3000,
         duration: 1000,
         current: 0,
+        total:0,
         goods: {
             item: {}
         }
@@ -18,9 +21,62 @@ Page({
         })
     },
     onLoad(option) {
-        this.goods = App.HttpResource('/goods/:id', { id: '@id' })
+        // this.goods = App.HttpResource('/goods/:id', { id: '@id' })
+        var self = this
         this.setData({
             id: option.id
+        })
+        console.log(reqCombineDetailUrl + '/' + option.id)
+        wx.request({
+          url: reqCombineDetailUrl+'/'+option.id,
+          data: {},//请求参数，若请求接口无需参数则为空
+          method: 'POST',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (result) {
+            wx.showToast({
+              title: 'loading',
+              icon: 'loading',
+              mask: true,
+              duration: 10
+            })
+            console.log(result.data)
+            if (result.data) {
+              console.log(result.data)
+              self.setData({
+                goods: {
+                  items: result.data,
+                  paginate: {
+                    total: result.data.length
+                  }
+                },
+                total :result.data.images.length
+              })
+            }
+          },
+
+          fail: function ({ errMsg }) {
+            console.log('request fail, set default data')
+            self.setData({
+              goods: {
+                items: {
+                  'content': '透镜/安定器/总成',
+                  'id': 1,
+                  'thumbUrl': 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG',
+                  'images': ['https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG', 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG', 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG'],
+                  'name': '欧司朗海拉5套装',
+                  'params': '36W',
+                  'price': 1400,
+                  'memo': ''
+                },
+                paginate: {
+                  total: 1
+                }
+              },
+              total:3
+            })
+          }
         })
     },
     onShow() {
@@ -56,18 +112,57 @@ Page({
     },
     getDetail(id) {
         // App.HttpService.getDetail(id)
-        this.goods.getAsync({ id: id })
-            .then(res => {
-                const data = res.data
-                console.log(data)
-                if (data.meta.code == 0) {
-                    data.data.images.forEach(n => n.path = App.renderImage(n.path))
-                    this.setData({
-                        'goods.item': data.data,
-                        total: data.data.images.length,
-                    })
+        var self = this
+      wx.request({
+        url: reqCombineDetailUrl + '/' + id,
+        data: {},//请求参数，若请求接口无需参数则为空
+        method: 'POST',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (result) {
+          wx.showToast({
+            title: 'loading',
+            icon: 'loading',
+            mask: true,
+            duration: 10
+          })
+          if (result.data) {
+            console.log(result.data)
+            self.setData({
+              goods: {
+                items: result.data,
+                paginate: {
+                  total: result.data.length
                 }
+              },
+              total: result.data.images.length
             })
+          }
+        },
+
+        fail: function ({ errMsg }) {
+          console.log('request fail, set default data')
+          self.setData({
+            goods: {
+              items: {
+                'content': '透镜/安定器/总成',
+                'id': 1,
+                'thumbUrl': 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG',
+                'images': ['https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG', 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG', 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=742403562,3167647441&fm=173&s=0910EC121AFC7FAF672870C30300A0A1&w=640&h=397&img.JPEG'],
+                'name': '欧司朗海拉5套装',
+                'params': '36W',
+                'price': 1400,
+                'memo': ''
+              },
+              paginate: {
+                total: 1
+              }
+            },
+            total:3
+          })
+        }
+      })
     },
     getGoodsByType(url) {
         var self = this

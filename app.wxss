@@ -8,3 +8,6 @@
 @import 'assets/styles/weui.wxss';
 @import 'assets/styles/prompt.wxss';
 @import 'assets/styles/skyvow.wxss';
+@import 'common/common.wxss';
+
+

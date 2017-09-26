@@ -1,2 +1,4 @@
+<import src="../../common/nav.wxml"/>
 <import src="../../common/list.wxml"/>
+<template is="nav" data="{{ navList, activeIndex }}"/>
 <template is="list" data="{{ goods, prompt }}"/>

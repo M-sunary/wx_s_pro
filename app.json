@@ -34,12 +34,6 @@
         "iconPath":"pages/index/image/tabmenu/combine.png",
         "selectedIconPath": "pages/index/image/tabmenu/combine.png",
         "text": "超值套餐"
-      },
-      {
-        "pagePath": "pages/userInfo/user",
-        "iconPath": "pages/index/image/tabmenu/account.png",
-        "selectedIconPath": "pages/index/image/tabmenu/account.png",
-        "text": "个人中心"
       }
     ]
   },

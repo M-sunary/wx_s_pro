@@ -1,4 +1,6 @@
 /**index.wxss**/
+page{background-color:rgb(243, 243, 243);margin-left:auto;}
+
 .container{
     font-family: Helvetica Neue;
 }

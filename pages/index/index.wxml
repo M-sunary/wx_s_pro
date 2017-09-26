@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <import src="../../common/nav.wxml"/>
 <import src="../../common/list.wxml"/>
+<import src="../../common/ninelist.wxml"/>
 
 <view>
     <swiper class="swiper" indicator-dots="{{indicatorDots}}"
@@ -12,6 +13,7 @@
     </block>
     </swiper>
 </view>
+<template is="ninelist"/>
 <template is="nav" data="{{ navList, activeIndex }}"/>
 <template is="list" data="{{ goods, prompt }}"/>
 
